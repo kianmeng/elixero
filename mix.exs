@@ -1,17 +1,24 @@
 defmodule XeroXero.Mixfile do
   use Mix.Project
 
+  @source_url "https://github.com/etehtsea/elixero"
+  @version "0.5.0"
+
   def project do
-    [app: :xeroxero,
-     version: "0.5.0",
-     elixir: "~> 1.3",
-     description: description(),
-     package: package(),
-     deps: deps()]
+    [
+      app: :xeroxero,
+      version: @version,
+      elixir: "~> 1.3",
+      package: package(),
+      deps: deps(),
+      docs: docs()
+    ]
   end
 
   def application do
-    [applications: [:logger, :httpoison, :jason]]
+    [
+      applications: [:logger, :httpoison, :jason]
+    ]
   end
 
   defp deps do
@@ -23,17 +30,25 @@ defmodule XeroXero.Mixfile do
     ]
   end
 
-  defp description do
-    """
-    Xero API elixir SDK
-    """
-  end
-
   defp package do
     [
+      description: "Xero API Elixir SDK",
       maintainers: ["MJMortimer"],
       licenses: ["MIT"],
-      links: %{"Github" => "https://github.com/etehtsea/elixero"}
+      links: %{"GitHub" => @source_url}
+    ]
+  end
+
+  defp docs do
+    [
+      extras: [
+        "LICENSE.md": [title: "License"],
+        "README.md": [title: "Overview"]
+      ],
+      main: "readme",
+      source_url: @source_url,
+      source_ref: "v#{@version}",
+      formatters: ["html"]
     ]
   end
 end
